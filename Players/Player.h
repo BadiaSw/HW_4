@@ -2,11 +2,64 @@
 #pragma once
 
 #include <string>
-
+#include "Character.h"
+#include "Job.h"
+#include "Range.h"
 using std::string;
 
+
+
+const int MAX_LEVEL = 10;
+const int INITIAL_LEVEL = 1;
+const int MIN_HP = 0;
+const int MIN_FORCE = 0;
+const int INITIAL_FORCE = 5;
+
 class Player {
+protected:
+    int m_force;
+    int m_coins;
+    int m_level;
+    int m_HP;
+    int m_maxHP;
+    std::string m_name;
+    unique_ptr<Job> m_job;
+    unique_ptr<Character> m_character;
+    unique_ptr<Range> m_range;
+
 public:
+    explicit Player(const std::string &name,std::unique_ptr<Job> &&job,
+                       std::unique_ptr<Character> &&character,
+                       std::unique_ptr<Range> &&range);
+    void levelUp();
+
+    bool isAlive() const;
+    void changeForce(int force);
+
+    void damage(int HP);
+
+    bool isKnockedOut() const;
+
+    void addCoins(int coins);
+
+    void buy_and_apply();
+
+
+    int getCombatPower() const;
+
+    void setCharacter(unique_ptr<Character> character);
+
+    Character* getCharacter();
+
+
+    string getRange();
+
+    int getMaxHP() const;
+
+    Job* getJob() const;
+
+    void setJob(unique_ptr<Job> job);
+
     /**
      * Gets the description of the player
      *
