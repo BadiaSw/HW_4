@@ -27,4 +27,11 @@ public:
     void check_Balrog_Pack(const std::set<Monster*>& packMonsters);
     std::string getDescription() const override;
     void addPowerLootDamage(int power, int loot, int damage); // dummy or unimplemented
+    int getSize() const override {
+        int totalSize = 0;
+        for (std::list<std::unique_ptr<Monster>>::const_iterator it = monsters.begin(); it != monsters.end(); ++it) {
+            totalSize += (*it)->getSize(); // Recursive call
+        }
+        return totalSize;
+    }
 };

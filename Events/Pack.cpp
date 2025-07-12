@@ -104,7 +104,7 @@ void Pack::applyEncounter(Player& player) {
 
 // Returns a descriptive string summarizing the pack's attributes.
 std::string Pack::getDescription() const {
-    return "Pack of " + std::to_string(monsters.size()) + " members (power " +
+    return "Pack of " + std::to_string(getSize()) + " members (power " +
            std::to_string(getTotalPower()) + ", loot " +
            std::to_string(getTotalLoot()) + ", damage " +
            std::to_string(getTotalDamage()) + ")";

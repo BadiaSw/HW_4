@@ -56,4 +56,7 @@ public:
     int getHPLossOnDefeat() const {
         return m_HPLossOnDefeat;
     }
+    virtual int getSize() const {
+        return 1; 
+    }
 };
