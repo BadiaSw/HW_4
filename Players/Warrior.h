@@ -1,7 +1,7 @@
 #pragma once
 #include "Job.h"
 
-const int WARRIOR_MAXHP = 150;
+const int WARRIOR_MAX_HP = 150;
 const int WARRIOR_MULTIPLIER = 2;
 
 class Warrior : public Job {
@@ -13,6 +13,6 @@ public:
     }
 
     int getMaxHP() const override {
-        return WARRIOR_MAXHP;
+        return WARRIOR_MAX_HP;
     }
 };

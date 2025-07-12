@@ -8,6 +8,7 @@
 #include "EventFactory.h"
 #include "JobFactory.h"
 #include "RangeFactory.h"
+#include "Player.h"
 #include <algorithm>
 
 MatamStory::MatamStory(std::istream& eventsStream, std::istream& playersStream)
@@ -29,7 +30,7 @@ void MatamStory::readEvents(std::istream& eventsStream) {
     std::string input;
 
     while (eventsStream >> input) {
-        auto event = eventFactory.createEvent(input, eventsStream);
+    std::unique_ptr<Event> event = eventFactory.createEvent(input, eventsStream);
         if (!event) {
             throw std::runtime_error("Invalid Events File");
         }
@@ -47,7 +48,7 @@ void MatamStory::readPlayers(std::istream& playersStream) {
             throw std::runtime_error("Invalid Players File");
         }
 
-        auto player = MakePlayer(name, type, character);
+    std::unique_ptr<Player> player = MakePlayer(name, type, character);
         if (!player) {
             throw std::runtime_error("Invalid Players File");
         }
@@ -69,9 +70,9 @@ std::unique_ptr<Player> MatamStory::MakePlayer(const std::string& name,
     CharacterFactory characterFactory;
     RangeFactory rangeFactory;
 
-    auto job = jobFactory.CreateJob(type);
-    auto range = rangeFactory.createRange(type);
-    auto characterObj = characterFactory.createCharacter(character);
+    std::unique_ptr<Job> job = jobFactory.CreateJob(type);
+    std::unique_ptr<Range> range = rangeFactory.createRange(type);
+    std::unique_ptr<Character> characterObj = characterFactory.createCharacter(character);
 
     if (!job || !range || !characterObj) {
         return nullptr;
@@ -85,38 +86,47 @@ std::unique_ptr<Player> MatamStory::MakePlayer(const std::string& name,
 }
 
 
-
 void MatamStory::playRound() {
     printRoundStart();
 
+    // Step 1: Gather active players (alive)
     std::list<std::reference_wrapper<Player>> activePlayers;
-    for (auto& player : players) {
-        if (player->isAlive()) {
-            activePlayers.push_back(*player);
+    for (std::list<std::unique_ptr<Player>>::iterator it = players.begin(); it != players.end(); ++it)
+ {
+        if ((*it)->isAlive()) {
+            activePlayers.push_back(*(*it));
         }
     }
 
-    for (Player& player : activePlayers) {
-        playTurn(player);
+    // Step 2: Let each active player take a turn
+    for (std::list<std::reference_wrapper<Player>>::iterator it = activePlayers.begin(); it != activePlayers.end(); ++it) {
+        playTurn(it->get());
     }
 
     printRoundEnd();
     printLeaderBoardMessage();
 
+    // Step 3: Sort players and print leaderboard
     std::vector<std::reference_wrapper<Player>> sortedPlayers;
-    std::transform(players.begin(), players.end(), std::back_inserter(sortedPlayers),
-                   [](std::unique_ptr<Player>& p) { return std::ref(*p); });
 
-    std::sort(sortedPlayers.begin(), sortedPlayers.end(),
-              [](const Player& p1, const Player& p2) {
-                  if (p1.getLevel() != p2.getLevel()) return p1.getLevel() > p2.getLevel();
-                  if (p1.getCoins() != p2.getCoins()) return p1.getCoins() > p2.getCoins();
-                  return p1.getName() < p2.getName();
-              });
+    for (std::list<std::unique_ptr<Player>>::iterator it = players.begin(); it != players.end(); ++it)
+ {
+        sortedPlayers.push_back(*(*it)); // convert unique_ptr<Player> to Player&
+    }
+
+    struct {
+        bool operator()(const Player& p1, const Player& p2) const {
+            if (p1.getLevel() != p2.getLevel()) return p1.getLevel() > p2.getLevel();
+            if (p1.getCoins() != p2.getCoins()) return p1.getCoins() > p2.getCoins();
+            return p1.getName() < p2.getName();
+        }
+    } playerComparator;
+
+    std::sort(sortedPlayers.begin(), sortedPlayers.end(), playerComparator);
 
     int rank = 1;
-    for (const Player& player : sortedPlayers) {
-        printLeaderBoardEntry(rank++, player);
+    for (std::vector<std::reference_wrapper<Player>>::const_iterator it = sortedPlayers.begin(); it != sortedPlayers.end(); ++it) {
+        printLeaderBoardEntry(rank++, it->get());
     }
 
     printBarrier();
@@ -124,10 +134,14 @@ void MatamStory::playRound() {
 
 
 
+
+
+
+
 void MatamStory::playTurn(Player& player) {
     if (events.empty()) return;
 
-    auto currEvent = std::move(events.front());
+    std::unique_ptr<Event> currEvent = std::move(events.front()); 
     events.erase(events.begin());
 
     printTurnDetails(m_turnIndex++, player, *currEvent);
@@ -137,12 +151,13 @@ void MatamStory::playTurn(Player& player) {
 
 
 
+
 void MatamStory::play() {
     printStartMessage();
 
     int playerNum = 1;
-    for (const auto& player : players) {
-        printStartPlayerEntry(playerNum++, *player);
+    for (std::list<std::unique_ptr<Player>>::const_iterator it = players.begin(); it != players.end(); ++it) {
+        printStartPlayerEntry(playerNum++, *(*it)); // dereference unique_ptr
     }
 
     printBarrier();
@@ -154,6 +169,8 @@ void MatamStory::play() {
     printGameOver();
     printEndMessage();
 }
+
+
 
 
 
@@ -190,5 +207,3 @@ void MatamStory::printEndMessage() {
 
     printNoWinners();
 }
-
-

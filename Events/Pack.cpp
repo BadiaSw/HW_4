@@ -4,8 +4,12 @@
 // Calculates the total combat power of the pack, including nested packs.
 int Pack::getTotalPower() const {
     int totalPower = 0;
-    for (auto* monster : getPackMonsters()) {
-        if (auto* pack = dynamic_cast<Pack*>(monster)) {
+    std::set<Monster*> packMonsters = getPackMonsters();
+    std::set<Monster*>::const_iterator it;
+    for (it = packMonsters.begin(); it != packMonsters.end(); ++it) {
+        Monster* monster = *it;
+        Pack* pack = dynamic_cast<Pack*>(monster);
+        if (pack != nullptr) {
             totalPower += pack->getTotalPower();
         } else {
             totalPower += monster->getCombatPower();
@@ -17,11 +21,13 @@ int Pack::getTotalPower() const {
 // Computes the total loot available in the pack by summing the loot of all monsters.
 int Pack::getTotalLoot() const {
     int totalLoot = 0;
-    for (const auto& monster : monsters) {
-        totalLoot += monster->getLoot();
+    std::list<std::unique_ptr<Monster>>::const_iterator it;
+    for (it = monsters.begin(); it != monsters.end(); ++it) {
+        totalLoot += (*it)->getLoot();
     }
     return totalLoot;
 }
+
 void Pack::setNumMonsters(int num) {
     numMons = num;
 }
@@ -29,8 +35,9 @@ void Pack::setNumMonsters(int num) {
 // Calculates the total damage inflicted by all monsters in the pack when defeated.
 int Pack::getTotalDamage() const {
     int totalDamage = 0;
-    for (const auto& monster : monsters) {
-        totalDamage += monster->getHPLossOnDefeat();
+    std::list<std::unique_ptr<Monster>>::const_iterator it;
+    for (it = monsters.begin(); it != monsters.end(); ++it) {
+        totalDamage += (*it)->getHPLossOnDefeat();
     }
     return totalDamage;
 }
@@ -46,19 +53,26 @@ Pack::Pack() : Monster() {}
 // Returns a set of raw pointers to the monsters in the pack for easy iteration.
 std::set<Monster*> Pack::getPackMonsters() const {
     std::set<Monster*> rawPointers;
-    for (const auto& mon : monsters) {
-        rawPointers.insert(mon.get());
+    std::list<std::unique_ptr<Monster>>::const_iterator it;
+    for (it = monsters.begin(); it != monsters.end(); ++it) {
+        rawPointers.insert(it->get());
     }
     return rawPointers;
 }
 
 // Recursively checks the pack and nested packs for Balrog monsters and increases their combat power.
 void Pack::check_Balrog_Pack(const std::set<Monster*>& packMonsters) {
-    for (auto* monster : packMonsters) {
-        if (auto* balrog = dynamic_cast<Balrog*>(monster)) {
+    std::set<Monster*>::const_iterator it;
+    for (it = packMonsters.begin(); it != packMonsters.end(); ++it) {
+        Monster* monster = *it;
+        Balrog* balrog = dynamic_cast<Balrog*>(monster);
+        if (balrog != nullptr) {
             balrog->increaseCombatPower();
-        } else if (auto* pack = dynamic_cast<Pack*>(monster)) {
-            check_Balrog_Pack(pack->getPackMonsters());
+        } else {
+            Pack* pack = dynamic_cast<Pack*>(monster);
+            if (pack != nullptr) {
+                check_Balrog_Pack(pack->getPackMonsters());
+            }
         }
     }
 }

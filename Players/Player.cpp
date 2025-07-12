@@ -82,7 +82,7 @@ Character* Player::getCharacter() {
     return m_character.get();
 }
 
-void Player::setCharacter(unique_ptr<Character> character) {
+void Player::setCharacter( std::unique_ptr<Character> character) {
     m_character = std::move(character);
 }
 
@@ -99,7 +99,7 @@ string Player::getDescription() const {
     return m_name + ", " + m_job->getJob() + " with "  + m_character->getCharacter() + " character " + "(level " +std::to_string(m_level)
            + ", force " +std::to_string(m_force) +  ")";
 }
-void Player::setJob(unique_ptr<Job> job) {
+void Player::setJob( std::unique_ptr<Job> job) {
     m_job = std::move(job);
 
 }

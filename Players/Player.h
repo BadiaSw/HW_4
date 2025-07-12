@@ -5,6 +5,7 @@
 #include "Character.h"
 #include "Job.h"
 #include "Range.h"
+#include <memory>
 using std::string;
 
 
@@ -23,12 +24,12 @@ protected:
     int m_HP;
     int m_maxHP;
     std::string m_name;
-    unique_ptr<Job> m_job;
-    unique_ptr<Character> m_character;
-    unique_ptr<Range> m_range;
+    std::unique_ptr<Job> m_job;
+    std::unique_ptr<Character> m_character;
+   std::unique_ptr<Range> m_range;
 
 public:
-    explicit Player(const std::string &name,std::unique_ptr<Job> &&job,
+     Player(const std::string &name,std::unique_ptr<Job> &&job,
                        std::unique_ptr<Character> &&character,
                        std::unique_ptr<Range> &&range);
     void levelUp();
@@ -47,7 +48,7 @@ public:
 
     int getCombatPower() const;
 
-    void setCharacter(unique_ptr<Character> character);
+    void setCharacter(std::unique_ptr<Character> character);
 
     Character* getCharacter();
 
@@ -58,7 +59,7 @@ public:
 
     Job* getJob() const;
 
-    void setJob(unique_ptr<Job> job);
+    void setJob(std::unique_ptr<Job> job);
 
     /**
      * Gets the description of the player
