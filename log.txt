@@ -1,0 +1,247 @@
+* commit 3c35fa3ccac84733b8a43958d3ad6aa0e676c820
+| Author: Badia.Swaed <badeaswaed412@gmail.com>
+| Date:   Sat Jul 12 23:12:17 2025 +0300
+| 
+|     add dry.pdf+ remove trash files
+| 
+|  Events/Balrog.h:Zone.Identifier            |   0
+|  Events/Event.h:Zone.Identifier             |   0
+|  Events/EventFactory.h:Zone.Identifier      |   0
+|  Events/Monster.h:Zone.Identifier           |   0
+|  Events/Pack.cpp:Zone.Identifier            |   0
+|  Events/Pack.h:Zone.Identifier              |   0
+|  Events/PotionsMerchant.h:Zone.Identifier   |   0
+|  Events/Slime.h:Zone.Identifier             |   0
+|  Events/Snail.h:Zone.Identifier             |   0
+|  Events/SolarEclipse.h:Zone.Identifier      |   0
+|  Events/SpecialEvent.h:Zone.Identifier      |   0
+|  MatamStory.cpp:Zone.Identifier             |   0
+|  MatamStory.h:Zone.Identifier               |   0
+|  Players/Archer.h:Zone.Identifier           |   0
+|  Players/Character.h:Zone.Identifier        |   0
+|  Players/CharacterFactory.h:Zone.Identifier |   0
+|  Players/Job.h:Zone.Identifier              |   0
+|  Players/JobFactory.h:Zone.Identifier       |   0
+|  Players/Magician.h:Zone.Identifier         |   0
+|  Players/Player.cpp:Zone.Identifier         |   0
+|  Players/Player.h:Zone.Identifier           |   0
+|  Players/Range.h:Zone.Identifier            |   0
+|  Players/RangeFactory.h:Zone.Identifier     |   0
+|  Players/Responsible.h:Zone.Identifier      |   0
+|  Players/RiskTaking.h:Zone.Identifier       |   0
+|  Players/Warrior.h:Zone.Identifier          |   0
+|  add-testing-tools.sh                       |   2 --
+|  dry.pdf                                    | Bin 0 -> 270584 bytes
+|  28 files changed, 2 deletions(-)
+| 
+* commit d3adfa1d29c69b2059c21c692aafce00bc556ea5
+| Author: ahmad-abbass <ahmad.abbas@campus.technion.ac.il>
+| Date:   Sat Jul 12 23:03:41 2025 +0300
+| 
+|     finish wet part
+| 
+|  Events/Balrog.h                            | 49 +++++++++++-----
+|  Events/Balrog.h:Zone.Identifier            |  0
+|  Events/Event.h:Zone.Identifier             |  0
+|  Events/EventFactory.h                      | 86 ++++++++++++++++++++++++++--
+|  Events/EventFactory.h:Zone.Identifier      |  0
+|  Events/Monster.h                           | 64 ++++++++++++++-------
+|  Events/Monster.h:Zone.Identifier           |  0
+|  Events/Pack.cpp                            | 38 ++++++++----
+|  Events/Pack.cpp:Zone.Identifier            |  0
+|  Events/Pack.h                              | 33 +++++------
+|  Events/Pack.h:Zone.Identifier              |  0
+|  Events/PotionsMerchant.h                   | 24 +++++---
+|  Events/PotionsMerchant.h:Zone.Identifier   |  0
+|  Events/Slime.h                             | 29 ++++++----
+|  Events/Slime.h:Zone.Identifier             |  0
+|  Events/Snail.h                             | 22 ++++---
+|  Events/Snail.h:Zone.Identifier             |  0
+|  Events/SolarEclipse.h                      | 30 ++++++++--
+|  Events/SolarEclipse.h:Zone.Identifier      |  0
+|  Events/SpecialEvent.h                      | 20 ++++---
+|  Events/SpecialEvent.h:Zone.Identifier      |  0
+|  MatamStory.cpp                             | 69 +++++++++++++---------
+|  MatamStory.cpp:Zone.Identifier             |  0
+|  MatamStory.h:Zone.Identifier               |  0
+|  Players/Archer.h:Zone.Identifier           |  0
+|  Players/Character.h:Zone.Identifier        |  0
+|  Players/CharacterFactory.h:Zone.Identifier |  0
+|  Players/Job.h:Zone.Identifier              |  0
+|  Players/JobFactory.h:Zone.Identifier       |  0
+|  Players/Magician.h:Zone.Identifier         |  0
+|  Players/Player.cpp                         |  4 +-
+|  Players/Player.cpp:Zone.Identifier         |  0
+|  Players/Player.h                           | 13 +++--
+|  Players/Player.h:Zone.Identifier           |  0
+|  Players/Range.h:Zone.Identifier            |  0
+|  Players/RangeFactory.h:Zone.Identifier     |  0
+|  Players/Responsible.h:Zone.Identifier      |  0
+|  Players/RiskTaking.h:Zone.Identifier       |  0
+|  Players/Warrior.h                          |  4 +-
+|  Players/Warrior.h:Zone.Identifier          |  0
+|  40 files changed, 341 insertions(+), 144 deletions(-)
+| 
+* commit 8daffe6075964355030efd6833699e06dae1017b
+| Author: Badia.Swaed <badeaswaed412@gmail.com>
+| Date:   Sat Jul 12 13:06:05 2025 +0300
+| 
+|     remove trash files
+| 
+|  Events/Balrog.cpp:Zone.Identifier          | 2 --
+|  Events/Balrog.h:Zone.Identifier            | 2 --
+|  Events/Event.h:Zone.Identifier             | 2 --
+|  Events/EventFactory.cpp:Zone.Identifier    | 2 --
+|  Events/EventFactory.h:Zone.Identifier      | 2 --
+|  Events/Monster.cpp:Zone.Identifier         | 2 --
+|  Events/Monster.h:Zone.Identifier           | 2 --
+|  Events/Pack.cpp:Zone.Identifier            | 2 --
+|  Events/Pack.h:Zone.Identifier              | 2 --
+|  Events/PotionsMerchant.cpp:Zone.Identifier | 2 --
+|  Events/PotionsMerchant.h:Zone.Identifier   | 2 --
+|  Events/Slime.cpp:Zone.Identifier           | 2 --
+|  Events/Slime.h:Zone.Identifier             | 2 --
+|  Events/Snail.cpp:Zone.Identifier           | 2 --
+|  Events/Snail.h:Zone.Identifier             | 2 --
+|  Events/SolarEclipse.cpp:Zone.Identifier    | 2 --
+|  Events/SolarEclipse.h:Zone.Identifier      | 2 --
+|  Events/SpecialEvent.cpp:Zone.Identifier    | 2 --
+|  Events/SpecialEvent.h:Zone.Identifier      | 2 --
+|  MatamStory.cpp:Zone.Identifier             | 2 --
+|  MatamStory.h:Zone.Identifier               | 2 --
+|  Players/Archer.h:Zone.Identifier           | 2 --
+|  Players/Character.h:Zone.Identifier        | 2 --
+|  Players/CharacterFactory.h:Zone.Identifier | 2 --
+|  Players/Job.h:Zone.Identifier              | 2 --
+|  Players/JobFactory.h:Zone.Identifier       | 2 --
+|  Players/Magician.h:Zone.Identifier         | 2 --
+|  Players/Player.cpp:Zone.Identifier         | 2 --
+|  Players/Player.h:Zone.Identifier           | 2 --
+|  Players/Range.h:Zone.Identifier            | 2 --
+|  Players/RangeFactory.h:Zone.Identifier     | 2 --
+|  Players/Responsible.h:Zone.Identifier      | 2 --
+|  Players/RiskTaking.h:Zone.Identifier       | 2 --
+|  Players/Warrior.h:Zone.Identifier          | 2 --
+|  add-testing-tools.sh                       | 2 ++
+|  main.cpp:Zone.Identifier                   | 2 --
+|  36 files changed, 2 insertions(+), 70 deletions(-)
+| 
+* commit 6d02c81bdb2746f8be4e9a46b47fd5f879c3777d
+| Author: Badia.Swaed <badeaswaed412@gmail.com>
+| Date:   Fri Jul 11 01:23:35 2025 +0300
+| 
+|     make 1st edition
+| 
+|  Events/Balrog.cpp                          |  39 ++++++
+|  Events/Balrog.cpp:Zone.Identifier          |   2 +
+|  Events/Balrog.h                            |  27 ++++
+|  Events/Balrog.h:Zone.Identifier            |   2 +
+|  Events/Event.h                             |  20 ++-
+|  Events/Event.h:Zone.Identifier             |   2 +
+|  Events/EventFactory.cpp                    |  88 +++++++++++++
+|  Events/EventFactory.cpp:Zone.Identifier    |   2 +
+|  Events/EventFactory.h                      |  18 +++
+|  Events/EventFactory.h:Zone.Identifier      |   2 +
+|  Events/Monster.cpp                         |  44 +++++++
+|  Events/Monster.cpp:Zone.Identifier         |   2 +
+|  Events/Monster.h                           |  35 ++++++
+|  Events/Monster.h:Zone.Identifier           |   2 +
+|  Events/Pack.cpp                            |  97 ++++++++++++++
+|  Events/Pack.cpp:Zone.Identifier            |   2 +
+|  Events/Pack.h                              |  35 ++++++
+|  Events/Pack.h:Zone.Identifier              |   2 +
+|  Events/PotionsMerchant.cpp                 |  19 +++
+|  Events/PotionsMerchant.cpp:Zone.Identifier |   2 +
+|  Events/PotionsMerchant.h                   |  15 +++
+|  Events/PotionsMerchant.h:Zone.Identifier   |   2 +
+|  Events/Slime.cpp                           |  15 +++
+|  Events/Slime.cpp:Zone.Identifier           |   2 +
+|  Events/Slime.h                             |  19 +++
+|  Events/Slime.h:Zone.Identifier             |   2 +
+|  Events/Snail.cpp                           |  16 +++
+|  Events/Snail.cpp:Zone.Identifier           |   2 +
+|  Events/Snail.h                             |  18 +++
+|  Events/Snail.h:Zone.Identifier             |   2 +
+|  Events/SolarEclipse.cpp                    |  31 +++++
+|  Events/SolarEclipse.cpp:Zone.Identifier    |   2 +
+|  Events/SolarEclipse.h                      |  20 +++
+|  Events/SolarEclipse.h:Zone.Identifier      |   2 +
+|  Events/SpecialEvent.cpp                    |   7 ++
+|  Events/SpecialEvent.cpp:Zone.Identifier    |   2 +
+|  Events/SpecialEvent.h                      |  16 +++
+|  Events/SpecialEvent.h:Zone.Identifier      |   2 +
+|  MatamStory.cpp                             | 182 ++++++++++++++++++++++-----
+|  MatamStory.cpp:Zone.Identifier             |   2 +
+|  MatamStory.h                               |  68 +++++++---
+|  MatamStory.h:Zone.Identifier               |   2 +
+|  Players/Archer.h                           |  13 ++
+|  Players/Archer.h:Zone.Identifier           |   2 +
+|  Players/Character.h                        |  28 +++++
+|  Players/Character.h:Zone.Identifier        |   2 +
+|  Players/CharacterFactory.h                 |  21 ++++
+|  Players/CharacterFactory.h:Zone.Identifier |   2 +
+|  Players/Job.h                              |  37 ++++++
+|  Players/Job.h:Zone.Identifier              |   2 +
+|  Players/JobFactory.h                       |  20 +++
+|  Players/JobFactory.h:Zone.Identifier       |   2 +
+|  Players/Magician.h                         |  11 ++
+|  Players/Magician.h:Zone.Identifier         |   2 +
+|  Players/Player.cpp                         | 111 ++++++++++++++++
+|  Players/Player.cpp:Zone.Identifier         |   2 +
+|  Players/Player.h                           |  55 +++++++-
+|  Players/Player.h:Zone.Identifier           |   2 +
+|  Players/Range.h                            |  44 +++++++
+|  Players/Range.h:Zone.Identifier            |   2 +
+|  Players/RangeFactory.h                     |  18 +++
+|  Players/RangeFactory.h:Zone.Identifier     |   2 +
+|  Players/Responsible.h                      |  23 ++++
+|  Players/Responsible.h:Zone.Identifier      |   2 +
+|  Players/RiskTaking.h                       |  24 ++++
+|  Players/RiskTaking.h:Zone.Identifier       |   2 +
+|  Players/Warrior.h                          |  18 +++
+|  Players/Warrior.h:Zone.Identifier          |   2 +
+|  main.cpp:Zone.Identifier                   |   2 +
+|  69 files changed, 1273 insertions(+), 49 deletions(-)
+| 
+* commit 51796562dfb799a0ac456f5d2f922b9571403bd9
+| Author: Yinon Goldshtein <yinongold@gmail.com>
+| Date:   Tue Jun 24 09:06:41 2025 +0300
+| 
+|     updated course number in README
+| 
+|  README.md | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+| 
+* commit 11db499619ae45b95224312022c5e0459653edcd
+| Author: Egbaria Mohammad-Baraa <102754795+EgbariaMohammad@users.noreply.github.com>
+| Date:   Wed Jan 8 19:48:30 2025 +0200
+| 
+|     Update README.md
+| 
+|  README.md | 4 ++--
+|  1 file changed, 2 insertions(+), 2 deletions(-)
+| 
+* commit 89b5f6299cabd5cfeb30a0873786055da6280436
+  Author: Yinon Goldshtein <yinongold@gmail.com>
+  Date:   Tue Jan 7 01:02:53 2025 +0200
+  
+      initial commit
+  
+   Events/Event.h       |  14 +++++
+   MatamStory.cpp       |  74 +++++++++++++++++++++++++
+   MatamStory.h         |  55 +++++++++++++++++++
+   Players/Player.h     |  51 +++++++++++++++++
+   README.md            |   7 +++
+   Utilities.cpp        | 117 +++++++++++++++++++++++++++++++++++++++
+   Utilities.h          | 146 +++++++++++++++++++++++++++++++++++++++++++++++++
+   main.cpp             |  40 ++++++++++++++
+   tests/test1.events   |   5 ++
+   tests/test1.expected |  96 ++++++++++++++++++++++++++++++++
+   tests/test1.players  |   3 +
+   tests/test2.events   |   4 ++
+   tests/test2.expected |   1 +
+   tests/test2.players  |   3 +
+   tests/test3.events   |   5 ++
+   tests/test3.expected |   1 +
+   tests/test3.players  |   2 +
+   17 files changed, 624 insertions(+)
